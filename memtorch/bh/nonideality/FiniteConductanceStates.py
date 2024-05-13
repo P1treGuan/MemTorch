@@ -66,8 +66,8 @@ def apply_finite_conductance_states(layer, n_conductance_states):
                 memtorch.bh.Quantize.quantize(
                     crossbar.conductance_matrix.view(-1),
                     n_conductance_states,
-                    min=1 / r_off.view(-1),
-                    max=1 / r_on.view(-1),
+                    min=1 / (r_off.view(-1)).min(),
+                    max=1 / (r_on.view(-1)).min(),
                     override_original=True,
                 )
                 .view(conductance_matrix_shape)
