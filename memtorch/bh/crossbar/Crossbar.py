@@ -65,14 +65,14 @@ class Crossbar:
         self.tile_shape = tile_shape
         self.use_bindings = use_bindings
         self.cuda_malloc_heap_size = cuda_malloc_heap_size
-        if hasattr(memristor_model_params, "r_off"):
+        if "r_off" in memristor_model_params.keys():
             self.r_off_mean = memristor_model_params["r_off"]
             if callable(self.r_off_mean):
                 self.r_off_mean = self.r_off_mean()
         else:
             self.r_off_mean = memristor_model().r_off
 
-        if hasattr(memristor_model_params, "r_on"):
+        if "r_on" in memristor_model_params.keys():
             self.r_on_mean = memristor_model_params["r_on"]
             if callable(self.r_on_mean):
                 self.r_on_mean = self.r_on_mean()
